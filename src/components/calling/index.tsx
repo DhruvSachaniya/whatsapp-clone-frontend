@@ -13,13 +13,15 @@ import { Phone } from "lucide-react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store/store";
 
+//NOTE:- For now the video calling is based on test it will work on production
+
 const Calling = () => {
   const { socket } = useSocket();
   const [me, setMe] = useState("");
   const [stream, setStream] = useState<MediaStream | undefined>();
   const [receivingCall, setReceivingCall] = useState(false);
   const [caller, setCaller] = useState("");
-  const [callerSignal, setCallerSignal] = useState<any>();
+  const [callerSignal, setCallerSignal] = useState();
   const [callAccepted, setCallAccepted] = useState(false);
   const [idToCall, setIdToCall] = useState("");
   const [callEnded, setCallEnded] = useState(false);
@@ -31,7 +33,6 @@ const Calling = () => {
   const currentSocketId = useSelector(
     (state: RootState) => state.chat.currentUserSocketId
   );
-  console.log("Current receiver socket ID:", currentSocketId);
 
   useEffect(() => {
     console.log("Socket instance:", socket);
